@@ -1,0 +1,8 @@
+--------------------
+Function "ChangePos" started at 2023-03-18T00:07:20.829976Used arguments: Andrzej CEO
+
+Returned CEO 
+--------------------
+Function "ChangePos" started at 2023-03-18T00:11:42.991111Used arguments: Andrzej CEO
+
+Returned CEO 

@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pl-PL" dir="ltr">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",e=>{this.persisted=e.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(e){if(document.hidden){e._triggerListener();return}this.triggerEvents.forEach(t=>window.addEventListener(t,e.userEventHandler,{passive:!0})),window.addEventListener("touchstart",e.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",e.touchStartHandler),document.addEventListener("visibilitychange",e.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(e=>window.removeEventListener(e,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(e){"HTML"!==e.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),e.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(e){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(e){e.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(e.target,"rocket-onclick","onclick"),this.interceptedClicks.push(e),e.preventDefault(),e.stopPropagation(),e.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(e=>{e.target.dispatchEvent(new MouseEvent("click",{view:e.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(e=>{this._isClickPending?this._pendingClickFinished=e:e()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(e,t,i){e.hasAttribute&&e.hasAttribute(t)&&(event.target.setAttribute(i,event.target.getAttribute(t)),event.target.removeAttribute(t))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let e=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{if(t.hasAttribute("src")){let i=new URL(t.src).origin;i!==location.origin&&e.push({src:i,crossOrigin:t.crossOrigin||"module"===t.getAttribute("data-rocket-type")})}}),e=[...new Map(e.map(e=>[JSON.stringify(e),e])).values()],this._batchInjectResourceHints(e,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(e){console.error(e)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{e.hasAttribute("data-rocket-src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)})}async _transformScript(e){return await this._littleBreath(),new Promise(t=>{function i(){e.setAttribute("data-rocket-status","executed"),t()}function r(){e.setAttribute("data-rocket-status","failed"),t()}try{let n=e.getAttribute("data-rocket-type"),s=e.getAttribute("data-rocket-src");if(n?(e.type=n,e.removeAttribute("data-rocket-type")):e.removeAttribute("type"),e.addEventListener("load",i),e.addEventListener("error",r),s)e.src=s,e.removeAttribute("data-rocket-src");else if(navigator.userAgent.indexOf("Firefox/")>0){var a=document.createElement("script");[...e.attributes].forEach(e=>{"type"!==e.nodeName&&a.setAttribute("data-rocket-type"===e.nodeName?"type":e.nodeName,e.nodeValue)}),a.text=e.text,e.parentNode.replaceChild(a,e),i()}else e.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(e.text)))}catch(o){r()}})}async _loadScriptsFromList(e){let t=e.shift();return t&&t.isConnected?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(e,t){var i=document.createDocumentFragment();e.forEach(e=>{let r=e.getAttribute&&e.getAttribute("data-rocket-src")||e.src;if(r){let n=document.createElement("link");n.href=r,n.rel=t,"preconnect"!==t&&(n.as="script"),e.getAttribute&&"module"===e.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),e.crossOrigin&&(n.crossOrigin=e.crossOrigin),e.integrity&&(n.integrity=e.integrity),i.appendChild(n),this.trash.push(n)}}),document.head.appendChild(i)}_delayEventListeners(e){let t={};function i(e,i){!function e(i){!t[i]&&(t[i]={originalFunctions:{add:i.addEventListener,remove:i.removeEventListener},eventsToRewrite:[]},i.addEventListener=function(){arguments[0]=r(arguments[0]),t[i].originalFunctions.add.apply(i,arguments)},i.removeEventListener=function(){arguments[0]=r(arguments[0]),t[i].originalFunctions.remove.apply(i,arguments)});function r(e){return t[i].eventsToRewrite.indexOf(e)>=0?"rocket-"+e:e}}(e),t[e].eventsToRewrite.push(i)}function r(e,t){let i=e[t];Object.defineProperty(e,t,{get:()=>i||function(){},set(r){e["rocket"+t]=i=r}})}i(document,"DOMContentLoaded"),i(window,"DOMContentLoaded"),i(window,"load"),i(window,"pageshow"),i(document,"readystatechange"),r(document,"onreadystatechange"),r(window,"onload"),r(window,"onpageshow")}_delayJQueryReady(e){let t;function i(i){if(i&&i.fn&&!e.allJQueries.includes(i)){i.fn.ready=i.fn.init.prototype.ready=function(t){return e.domReadyFired?t.bind(document)(i):document.addEventListener("rocket-DOMContentLoaded",()=>t.bind(document)(i)),i([])};let r=i.fn.on;i.fn.on=i.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map(e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]})}return r.apply(this,arguments),this},e.allJQueries.push(i)}t=i}i(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>t,set(e){i(e)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(e=>e(window).trigger("rocket-jquery-load")),await this._littleBreath();let e=new Event("rocket-pageshow");e.persisted=this.persisted,window.dispatchEvent(e),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let e=new Map;document.write=document.writeln=function(t){let i=document.currentScript;i||console.error("WPRocket unable to document.write this: "+t);let r=document.createRange(),n=i.parentElement,s=e.get(i);void 0===s&&(s=i.nextSibling,e.set(i,s));let a=document.createDocumentFragment();r.setStart(a,0),a.appendChild(r.createContextualFragment(t)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(e=>setTimeout(e)):new Promise(e=>requestAnimationFrame(e))}_emptyTrash(){this.trash.forEach(e=>e.remove())}static run(){let e=new RocketLazyLoadScripts;e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();</script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+                
+
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/rss+xml" title="FORBOT kanał RSS" href="https://forbot.pl/blog/kanal-rss" />
+    <link rel="preload" as="font" href="https://cdn.forbot.pl/blog/wp-content/themes/frwd/fonts/fa-solid-900.woff2" crossorigin>
+
+
+    <!--[if lt IE 9]>
+	<script src="https://forbot.pl/blog/wp-content/themes/frwd/js/html5.js"></script>
+	<![endif]-->
+
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<link rel="preload" href="https://forbot.pl/blog/wp-content/plugins/rate-my-post/public/css/fonts/ratemypost.ttf" type="font/ttf" as="font" crossorigin="anonymous">
+	<!-- This site is optimized with the Yoast SEO Premium plugin v20.1 (Yoast SEO v20.1) - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>FORBOT &bull; Blog o elektronice, Arduino i Raspberry Pi</title><link rel="stylesheet" href="https://forbot.pl/blog/wp-content/cache/min/1/349aa9a84f1d3895940fea39eafb42a9.css" media="all" data-minify="1" />
+	<meta name="description" content="FORBOT to blog dla pasjonatów elektroniki! Skorzystaj z darmowych kursów m.in.: podstaw elektroniki, lutowania, Arduino, Raspberry Pi, budowy robotów oraz STM32!" />
+	<link rel="canonical" href="https://forbot.pl/blog" />
+	<link rel="next" href="https://forbot.pl/blog/page/2" />
+	<meta property="og:locale" content="pl_PL" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Forbot" />
+	<meta property="og:description" content="Blog o robotyce, majsterkowaniu i programowaniu. Darmowe kursy Arduino, budowy robotów i elektroniki!" />
+	<meta property="og:url" content="https://forbot.pl/blog" />
+	<meta property="og:site_name" content="FORBOT" />
+	<meta property="og:image" content="https://cdn.forbot.pl/blog/wp-content/uploads/2015/01/facebook.jpg" />
+	<meta property="og:image:width" content="830" />
+	<meta property="og:image:height" content="400" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://forbot.pl/blog","url":"https://forbot.pl/blog","name":"FORBOT &bull; Blog o elektronice, Arduino i Raspberry Pi","isPartOf":{"@id":"https://forbot.pl/blog/#website"},"about":{"@id":"https://forbot.pl/blog/#organization"},"description":"FORBOT to blog dla pasjonatów elektroniki! Skorzystaj z darmowych kursów m.in.: podstaw elektroniki, lutowania, Arduino, Raspberry Pi, budowy robotów oraz STM32!","breadcrumb":{"@id":"https://forbot.pl/blog#breadcrumb"},"inLanguage":"pl-PL"},{"@type":"BreadcrumbList","@id":"https://forbot.pl/blog#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Blog","item":"https://forbot.pl/blog/"}]},{"@type":"WebSite","@id":"https://forbot.pl/blog/#website","url":"https://forbot.pl/blog/","name":"FORBOT","description":"Blog o elektronice, Arduino i Raspberry Pi","publisher":{"@id":"https://forbot.pl/blog/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://forbot.pl/blog/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"pl-PL"},{"@type":"Organization","@id":"https://forbot.pl/blog/#organization","name":"FORBOT","url":"https://forbot.pl/blog/","logo":{"@type":"ImageObject","inLanguage":"pl-PL","@id":"https://forbot.pl/blog/#/schema/logo/image/","url":"https://forbot.pl/blog/wp-content/uploads/2016/11/logo_forbot.png","contentUrl":"https://forbot.pl/blog/wp-content/uploads/2016/11/logo_forbot.png","width":326,"height":85,"caption":"FORBOT"},"image":{"@id":"https://forbot.pl/blog/#/schema/logo/image/"},"sameAs":["https://www.facebook.com/ForbotPL","https://www.youtube.com/channel/UCsWhH2ct8jhdGFdw1xUkhvQ"]}]}</script>
+	<meta name="msvalidate.01" content="BDAB77827330467676AE25E9C224D2AE" />
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel='dns-prefetch' href='//onesignal.com' />
+<link rel='dns-prefetch' href='//www.facebook.com' />
+<link rel='dns-prefetch' href='//www.google.pl' />
+<link rel='dns-prefetch' href='//www.google-analytics.com' />
+<link rel='dns-prefetch' href='//stats.g.doubleclick.net' />
+<link rel='dns-prefetch' href='//www.google.com' />
+<link rel='dns-prefetch' href='//cdn.forbot.pl' />
+
+<link href='https://cdn.forbot.pl' rel='preconnect' />
+<!-- forbot.pl/blog is managing ads with Advanced Ads --><!--noptimize--><script id="forbo-ready">
+			window.advanced_ads_ready=function(e,a){a=a||"complete";var d=function(e){return"interactive"===a?"loading"!==e:"complete"===e};d(document.readyState)?e():document.addEventListener("readystatechange",(function(a){d(a.target.readyState)&&e()}),{once:"interactive"===a})},window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[];		</script>
+		<!--/noptimize--><style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+
+<style id='ez-toc-inline-css' type='text/css'>
+div#ez-toc-container p.ez-toc-title {font-size: 100%;}div#ez-toc-container p.ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container nav ul ul li ul li {font-size: 90%!important;}div#ez-toc-container {background: #fff;border: 1px solid #ddd;}div#ez-toc-container p.ez-toc-title {color: #999;}div#ez-toc-container ul.ez-toc-list a {color: #428bca;}div#ez-toc-container ul.ez-toc-list a:hover {color: #2a6496;}div#ez-toc-container ul.ez-toc-list a:visited {color: #428bca;}
+.ez-toc-container-direction {direction: ltr;}.ez-toc-counter ul{counter-reset: item;}.ez-toc-counter nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left;}.ez-toc-widget-direction {direction: ltr;}.ez-toc-widget-container ul{counter-reset: item;}.ez-toc-widget-container nav ul li a::before {content: counters(item, ".", decimal) ". ";display: inline-block;counter-increment: item;flex-grow: 0;flex-shrink: 0;margin-right: .2em; float: left;}
+</style>
+
+
+<script type='text/javascript' src='https://forbot.pl/blog/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script type='text/javascript' id='ez-toc-scroll-scriptjs-js-after'>
+jQuery(document).ready(function(){document.querySelectorAll(".ez-toc-section").forEach(t=>{t.setAttribute("ez-toc-data-id","#"+decodeURI(t.getAttribute("id")))}),jQuery("a.ez-toc-link").click(function(){let t=jQuery(this).attr("href"),e=jQuery("#wpadminbar"),i=0;30>30&&(i=30),e.length&&(i+=e.height()),jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').length>0&&(i=jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').offset().top-i),jQuery("html, body").animate({scrollTop:i},500)})});
+</script>
+<script type='application/json' id='wpp-json'>
+{"sampling_active":1,"sampling_rate":10,"ajax_url":"https:\/\/forbot.pl\/blog\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","api_url":"https:\/\/forbot.pl\/blog\/wp-json\/wordpress-popular-posts","ID":0,"token":"5cb04a4899","lang":0,"debug":0}
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://forbot.pl/blog/wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js?ver=6.1.1' id='wpp-js-js' defer></script>
+<script type='text/javascript' id='advanced-ads-advanced-js-js-extra'>
+/* <![CDATA[ */
+var advads_options = {"blog_id":"1","privacy":{"enabled":false,"state":"not_needed"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/plugins/advanced-ads/public/assets/js/advanced.min.js?ver=1.40.1' id='advanced-ads-advanced-js-js' defer></script>
+<script type='text/javascript' id='advanced_ads_pro/visitor_conditions-js-extra'>
+/* <![CDATA[ */
+var advanced_ads_pro_visitor_conditions = {"referrer_cookie_name":"advanced_ads_pro_visitor_referrer","referrer_exdays":"365","page_impr_cookie_name":"advanced_ads_page_impressions","page_impr_exdays":"3650"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/plugins/advanced-ads-pro/modules/advanced-visitor-conditions/inc/conditions.min.js?ver=2.21.1' id='advanced_ads_pro/visitor_conditions-js' defer></script>
+            <style id="wpp-loading-animation-styles">@-webkit-keyframes bgslide{from{background-position-x:0}to{background-position-x:-200%}}@keyframes bgslide{from{background-position-x:0}to{background-position-x:-200%}}.wpp-widget-placeholder,.wpp-widget-block-placeholder{margin:0 auto;width:60px;height:3px;background:#dd3737;background:linear-gradient(90deg,#dd3737 0%,#571313 10%,#dd3737 100%);background-size:200% auto;border-radius:3px;-webkit-animation:bgslide 1s infinite linear;animation:bgslide 1s infinite linear}</style>
+            <script type="text/javascript">
+		var advadsCfpQueue = [];
+		var advadsCfpAd = function( adID ){
+			if ( 'undefined' == typeof advadsProCfp ) { advadsCfpQueue.push( adID ) } else { advadsProCfp.addElement( adID ) }
+		};
+		</script>
+		<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>
+
+    <style>
+        .mailingSchowaj {
+            display: none !important;
+        }
+
+        .mailingPokaz {
+            display: block !important;
+        }
+
+    </style>
+
+    <script>
+        if (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1) {
+            document.write("<style>.text-justify-desktop {margin-right: -1px! important}</style>");
+        }
+    </script>
+
+    <!-- Subskrypcja nowa - Treker 12.2015 v2 27.08.2018 -->
+    <script>
+        function setCookie(e,i,r){var u=new Date;u.setTime(u.getTime()+24*r*60*60*1000000);var t="expires="+u.toUTCString();document.cookie=e+"="+i+"; "+t+";domain=.forbot.pl;path=/";}
+
+        function getCookie(e){for(var n=e+"=",t=decodeURIComponent(document.cookie).split(";"),o=0;o<t.length;o++){for(var r=t[o];" "==r.charAt(0);)r=r.substring(1);if(0==r.indexOf(n))return r.substring(n.length,r.length)}return""}
+
+         if (getCookie('newsletterBox') == 1 && window.location.href.indexOf("codzienne-powiadomienia-nowych-artykulach") < 1) {
+            jQuery(document).ready(function(){
+                jQuery("#powiadomieniaMailowe_nbkp").addClass('mailingSchowaj');
+                jQuery("#powiadomieniaMailowe_nbpa").addClass('mailingSchowaj');
+                jQuery("#powiadomieniaMailoweZapisany").addClass('mailingPokaz');               
+            });
+            // document.write('<style>#powiadomieniaMailowe_nbkp, #powiadomieniaMailowe_nbpa{display: none !important;}#powiadomieniaMailoweZapisany{display: block !important;}</style>');
+         }
+         
+        //Mailing w prawej kolumnie
+        jQuery(document).ready(function() {
+            jQuery(document).on("submit", "#powiadomieniaMailoweFormularz_nbkp", function() {
+                var e = jQuery(this).serialize();
+                return jQuery("#mailLoader_nbkp").show(), jQuery("#result_nbkp").hide(), jQuery.ajax({
+                    type: "POST",
+                    url: "/_mailer/mail.php",
+                    data: e,
+                    success: function(e) {
+                        "1" == e.substring(0, 1) ? (e = e.substring(1), jQuery("#result_nbkp").html(e), jQuery("#result_nbkp").delay("5000").fadeOut("600")) : (e = e.substring(1), jQuery("#powiadomieniaMailoweSrodek_nbkp").slideUp("600"), jQuery("#result_nbkp").html(e), jQuery("#powiadomieniaMailowe_nbkp, #powiadomieniaMailowe_nbpa").delay("4000").fadeOut(), setCookie("newsletterBox", 1, 365)), jQuery("#mailLoader_nbkp").hide(), jQuery("#result_nbkp").show()
+                    }
+                }), !1
+            })
+        });
+
+        //Mailing pod artykulem
+        jQuery(document).ready(function() {
+            jQuery(document).on("submit", "#powiadomieniaMailoweFormularz_nbpa", function() {
+                var e = jQuery(this).serialize();
+                return jQuery("#mailLoader_nbpa").show(), jQuery("#result_nbpa").hide(), jQuery.ajax({
+                    type: "POST",
+                    url: "/_mailer/mail.php",
+                    data: e,
+                    success: function(e) {
+                        "1" == e.substring(0, 1) ? (e = e.substring(1), jQuery("#result_nbpa").html(e), jQuery("#result_nbpa").delay("5000").fadeOut("600")) : (e = e.substring(1), jQuery("#powiadomieniaMailoweSrodek_nbpa").slideUp("600"), jQuery("#result_nbpa").html(e), jQuery("#powiadomieniaMailowe_nbpa, #powiadomieniaMailowe_nbkp").delay("4000").fadeOut(), setCookie("newsletterBox", 1, 365)), jQuery("#mailLoader_nbpa").hide(), jQuery("#result_nbpa").show()
+                    }
+                }), !1
+            })
+        });
+           
+        jQuery(function () {
+            jQuery('[data-toggle="popover"]').popover()
+            jQuery('.popover-dismiss').popover({
+                trigger: 'focus',
+            })
+        })
+
+        document.addEventListener( 'wpcf7mailsent', function( event ) {
+        document.getElementById('hideForm').style.display = 'none';
+        }, false );
+
+
+            </script>
+    <script>
+        //Jeśli ktoś wszedł z newslettera to usuń parametry z URL (aby nie skopiował komuś takiego linka) + schowaj boxy do zapisu
+        if (window.location.href.indexOf("utm_source=ML") > 1) {
+            window.history.pushState("object or string", "Title", "/blog/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split("?")[0]);
+            setCookie("newsletterBox", 1, 365);
+        }
+
+        var jest = 0;
+        if (!(getCookie('newsletterBox') == 1 && window.location.href.indexOf("codzienne-powiadomienia-nowych-artykulach") < 1)) {
+            if (screen.width >= 800) { //Nie ładuj na mobilce
+                (function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+                var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+                f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+                var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+                _.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+                var ml_account = ml('accounts', '573647', 'm2e3e1x5c8', 'load');
+                jest = 1;
+            }
+        }
+
+        if (jest == 0 && (window.location.href.indexOf("id14482") > 1 || window.location.href.indexOf("id17277") > 1 || window.location.href.indexOf("id1890") > 1 || window.location.href.indexOf("id4315") > 1)) {
+                //Ładuj, bo bęzie content upgrade
+                (function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+                var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+                f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+                var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+                _.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+                var ml_account = ml('accounts', '573647', 'm2e3e1x5c8', 'load');
+        }   
+
+    </script>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '346642155503448');
+      fbq('track', 'PageView');
+    </script>
+    <!-- End Facebook Pixel Code -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="rocketlazyloadscript" async data-rocket-src="https://www.googletagmanager.com/gtag/js?id=UA-24682193-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-24682193-1');
+    </script>
+</head>
+    <body data-instant-intensity="viewport">
+    <header class="bg-white"  id="navbar__top">
+        <div class="container header__first">
+            <div class="row">
+                <div class="col-12 col-lg-5 d-none d-lg-block">
+                    <a href="https://forbot.pl/blog/"><img width="1179" height="255" src="https://cdn.forbot.pl/blog/wp-content/themes/frwd/images/logo.svg" data-no-lazy="1" class="img-fluid" style="width: 312px; height: 67px;"  alt="Logo FORBOT.pl - darmowe kursy elektroniki, Arduino, Raspberry Pi"></a>
+                </div>
+                <div class="col-12 col-lg-7" id="boxA__header"><div  class="forbo-627e731e7ed0590a5f49030e1d72bddf" id="forbo-627e731e7ed0590a5f49030e1d72bddf"></div></div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-0">
+        <div class="container">
+            <a class="navbar-brand d-lg-none" href="https://forbot.pl/blog/">
+                <img width="1179" height="255" src="https://cdn.forbot.pl/blog/wp-content/themes/frwd/images/logo_white.svg" class="header-logo" data-no-lazy="1" style="width: 160px; height: 35px;" alt="Logo FORBOT.pl - darmowe kursy elektroniki, Arduino, Raspberry Pi">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+					<li class="nav-item "><a href="https://forbot.pl/blog/" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Blog'})">Blog</a></li>
+<li class="nav-item "><a href="https://forbot.pl/forum/" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Forum'})">Forum</a></li>
+<li class="nav-item "><a href="https://forbot.pl/blog/kursy" class="nav-link hot" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Kursy'})">Kursy</a></li>
+<li class="nav-item "><a href="https://forbot.pl/blog/artykuly-o-elektronice" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Poradniki'})">Poradniki</a></li>
+<li class="nav-item "><a href="/blog/kurs-arduino-podstawy-programowania-spis-tresci-kursu-id5290" class="nav-link hot" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Arduino'})">Arduino</a></li>
+<li class="nav-item "><a href="https://forbot.pl/blog/kategoria/inspiracje" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'DIY'})">DIY</a></li>
+<li class="nav-item "><a href="https://forbot.pl/forum/quizzes/" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Quizy'})">Quizy</a></li>
+<li class="nav-item "><a href="https://forbot.pl/ekstra/" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'E-booki'})">E-booki</a></li>
+<li class="nav-item d-none d-xl-block"><a href="https://forbot.pl/blog/katalog-firm" class="nav-link " onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Katalog firm'})">Katalog firm</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Więcej'})">Więcej</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        	<a class="dropdown-item d-xl-none" href="/blog/katalog-firm" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Katalog firm - zwinięty'})">Katalog firm</a>
+                        	<a class="dropdown-item" href="/blog/wyszukiwarka" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Wyszukiwarka'})">Wyszukiwarka</a>
+                            <a class="dropdown-item" href="#" id="randomB" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Losowy artykuł'})">Losowy artykuł</a>
+                            <a class="dropdown-item" href="/blog/leksykon" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Leksykon'})">Leksykon</a>
+                            <a class="dropdown-item" href="/blog/wydarzenia" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Kalendarium/wydarzenia'})">Kalendarium/wydarzenia</a>
+                            <a class="dropdown-item" href="/blog/kontakt" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Kontakt'})">Kontakt</a>
+                            <a class="dropdown-item" href="/blog/wspolpraca" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Współpraca/reklama'})">Współpraca/Cooperation</a>
+                        </div>
+                    </li>
+                    <li class="nav-item d-lg-none no-hover">
+                        <form method="get" action="https://forbot.pl/blog" class="form-inline justify-content-center">
+                            <input type="text" class="form-control mr-2" name="s" id="s" value="" placeholder="Wyszukaj...">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        </form>
+                    </li>
+                    <!--
+                    <li class="nav-item bg-success mt-2 d-lg-none">
+                        <a class="nav-link text-white" href="#">
+                            <i class="fas fa-anchor text-white"></i> Kolorowy kafelek
+                        </a>
+                    </li>
+                    -->
+                </ul>
+                <script>document.getElementById('randomB').href = "/blog/odkryj-artykul?r=" + (new Date()).getTime() + Math.floor(Math.random() * 1000000);</script>
+                <div class="d-none d-lg-flex">
+                    <!-- <a href="#" class="btn btn-success d-none d-xl-block">Wybierz</a> -->
+                    <form class="header__search mr-1" method="get" action="https://forbot.pl/blog">
+                        <input type="text" name="s" value="" placeholder="Wyszukaj..." autocomplete="off">
+                        <input type="hidden" /> 
+                    </form>
+
+                    <a href="https://www.youtube.com/@forbot/videos" class="mr-1 d-none d-xl-block" target="_blank" rel="noopener noreferrer" title="FORBOT.pl na YouTube"  onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'YouTube'})">
+                        <img width="32" height="32" src="https://cdn.forbot.pl/blog/wp-content/themes/frwd/images/yt.png" alt="Forbot na YouTube" data-no-lazy="1" style="width: 27px; height: 27px; margin-bottom: -5px;" />
+                    </a>
+                    <a href="https://www.facebook.com/ForbotPL" class="mr-1 d-none d-xl-block" target="_blank" rel="noopener noreferrer" title="FORBOT.pl na Facebooku"  onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'Facebook'})">
+                        <i class="fab fa-facebook-square text-light"></i>
+                    </a>
+                    <a href="/blog/kanal-rss" class="d-none d-xl-block" title="Kanał RSS FORBOT.pl" onClick="gtag('event', 'Menu_TOP', { event_category: 'Menu', event_label: 'RSS'})">
+                        <i class="fas fa-rss-square text-light"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <main class="container">
+            <p class="d-lg-none text-center" style="margin-top:-1rem"><a href="/blog/kursy" onClick="gtag('event', 'Menu_Mobile_ekstra', { event_category: 'Menu', event_label: 'Kursy'})">Kursy</a> &bull; <a href="/blog/artykuly-o-elektronice"onClick="gtag('event', 'Menu_Mobile_ekstra', { event_category: 'Menu', event_label: 'Poradniki'})">Poradniki</a> &bull; <a href="/blog/kategoria/inspiracje"onClick="gtag('event', 'Menu_Mobile_ekstra', { event_category: 'Menu', event_label: 'DIY'})">Inspirujące DIY</a> &bull; <a href="/forum/" onClick="gtag('event', 'Menu_Mobile_ekstra', { event_category: 'Menu', event_label: 'Forum'})">Forum</a></p>
+                <div class="row mb-3 small_gutters">
+			<div class="col-12 col-xss-12 col-sm-8 offset-sm-0 col-md-6 col-lg-4">
+			    <div id="header__carousel" class="carousel slide carousel-fade" data-ride="carousel">
+			        <div class="carousel-inner">
+			        	<div class="carousel-item active" style="background: rgba(44,62,80,.8)"><a href="https://forbot.pl/blog/czujniki-wilgotnosci-gleby-dlaczego-sa-tak-problematyczne-id52948" onClick="gtag('event', 'Slider', { event_category: 'BOX', event_label: 'Czujniki wilgotności gleby – dlaczego są tak problematyczne?'})"><img class="d-block w-100" style="height: 182px" data-no-lazy="1" src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/10/FORBOT_czujniki_wilgotnosci_gleby_mini-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north" alt="Czujniki wilgotności gleby – dlaczego są tak problematyczne?"><div class="carousel-caption"><p style="padding-right: 10px;">Czujniki wilgotności gleby<br />– dlaczego są tak problematyczne?</p></div></a></div><div class="carousel-item" style="background: rgba(44,62,80,.8)"><a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-32-id53717" onClick="gtag('event', 'Slider', { event_category: 'BOX', event_label: 'Co ciekawego w DIY? 10 projektów naszych czytelników #32'})"><img class="d-block w-100" style="height: 182px"  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #32" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/niexie_zegar_mini_forbot_diy-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north"><noscript><img class="d-block w-100" style="height: 182px"  src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/niexie_zegar_mini_forbot_diy-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #32"></noscript><div class="carousel-caption"><p style="padding-right: 10px;">Co ciekawego w&nbsp;DIY?<br />10 projektów naszych czytelników #32</p></div></a></div><div class="carousel-item" style="background: rgba(44,62,80,.8)"><a href="https://forbot.pl/blog/jak-dziala-plyta-indukcyjna-czym-sa-prady-wirowe-id52963" onClick="gtag('event', 'Slider', { event_category: 'BOX', event_label: 'Jak działa płyta indukcyjna? Czym są prądy wirowe?'})"><img class="d-block w-100" style="height: 182px"  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="Jak działa płyta indukcyjna? Czym są prądy wirowe?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/plyta_indukcyjna_garnek-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north"><noscript><img class="d-block w-100" style="height: 182px"  src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/plyta_indukcyjna_garnek-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north" alt="Jak działa płyta indukcyjna? Czym są prądy wirowe?"></noscript><div class="carousel-caption"><p style="padding-right: 10px;">Jak działa płyta<br />indukcyjna? Czym są prądy wirowe?</p></div></a></div><div class="carousel-item" style="background: rgba(44,62,80,.8)"><a href="https://forbot.pl/blog/czym-sa-polprzewodniki-materialy-polprzewodnikowe-id52733" onClick="gtag('event', 'Slider', { event_category: 'BOX', event_label: 'Czym są półprzewodniki (materiały półprzewodnikowe)?'})"><img class="d-block w-100" style="height: 182px"  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="Czym są półprzewodniki (materiały półprzewodnikowe)?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/polprzewodniki_material_polprzewodnikowy_krzem-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north"><noscript><img class="d-block w-100" style="height: 182px"  src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/polprzewodniki_material_polprzewodnikowy_krzem-350x233.jpg?height=175&aspect_ratio=350:175&crop_gravity=north" alt="Czym są półprzewodniki (materiały półprzewodnikowe)?"></noscript><div class="carousel-caption"><p style="padding-right: 10px;">Czym są półprzewodniki<br />(materiały półprzewodnikowe)?</p></div></a></div><div class="carousel-item" style="background: rgba(44,62,80,.8)"><a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-31-id53828" onClick="gtag('event', 'Slider', { event_category: 'BOX', event_label: 'Co ciekawego w DIY? 10 projektów naszych czytelników #31'})"><img class="d-block w-100" style="height: 182px"  src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%200%200'%3E%3C/svg%3E" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #31" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/ploter_laserowy_mini_forbot_diy-350x233.png?height=175&aspect_ratio=350:175&crop_gravity=north"><noscript><img class="d-block w-100" style="height: 182px"  src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/ploter_laserowy_mini_forbot_diy-350x233.png?height=175&aspect_ratio=350:175&crop_gravity=north" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #31"></noscript><div class="carousel-caption"><p style="padding-right: 10px;">Co ciekawego w&nbsp;DIY?<br />10 projektów naszych czytelników #31</p></div></a></div>			        </div>
+			        <a class="carousel-control-prev" href="#header__carousel" role="button" data-slide="prev">
+			            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			            <span class="sr-only">Poprzedni</span>
+			        </a>
+			        <a class="carousel-control-next" href="#header__carousel" role="button" data-slide="next">
+			            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			            <span class="sr-only">Następny</span>
+			        </a>
+			    </div>
+			</div>
+
+			<div class="col-sm-4 col-md-3 col-lg-2 d-none d-sm-block" style="height: 183px">
+<a href="https://forbot.pl/blog/kurs-elektroniki-tranzystory-bipolarne-w-praktyce-id4315" class="header__box" onClick="gtag('event', 'BOX_1', { event_category: 'BOX', event_label: 'Tranzystory Poznaj w praktyce'})" style="background-image: url(https://cdn.forbot.pl/blog/wp-content/themes/frwd/info_box/tranzystor_v2.png)"><div class="header__box-description" style="background-color: rgba(44, 62, 80, 0.9)"><p class="font-weight-bold">Tranzystory</p><p>Poznaj w praktyce</p></div></a>			</div>
+
+			<div class="col-md-3 col-lg-2 d-none d-md-block" style="height: 183px">
+<a href="https://forbot.pl/blog/kurs-elektroniki-ii-czujniki-analogowe-komparator-id10025" class="header__box" onClick="gtag('event', 'BOX_2', { event_category: 'BOX', event_label: 'Kurs elektroniki Czujniki analogowe'})" style="background-image: url(https://cdn.forbot.pl/blog/wp-content/themes/frwd/info_box/fotorezystor.png)"><div class="header__box-description" style="background-color: rgba(44, 62, 80, 0.9)"><p class="font-weight-bold">Kurs elektroniki</p><p>Czujniki analogowe</p></div></a>			</div>
+
+			<div class="col-lg-4 d-none d-lg-flex flex-column align-items-stretch text-center header__box__4">
+			    <div class="d-flex align-items-center">
+			        <a href="https://forbot.pl/blog/kursy" class="col bg-danger justify-content-center" onClick="gtag('event', 'Kafelki', { event_category: 'BOX', event_label: 'Kursy'})">
+			            <i class="fas fas fa-graduation-cap"></i> Kursy
+			        </a>
+			        <a href="https://forbot.pl/blog/artykuly-o-robotyce" class="col bg-warning justify-content-center" onClick="gtag('event', 'Kafelki', { event_category: 'BOX', event_label: 'Artykuły'})">
+			            <i class="fas fa-wrench"></i> Artykuły
+			        </a>
+			    </div>
+			    <div class="d-flex align-items-center">
+			        <a href="https://forbot.pl/forum/ourpicks/" class="col bg-success justify-content-center" onClick="gtag('event', 'Kafelki', { event_category: 'BOX', event_label: 'DIY'})">
+			            <i class="fas fa-cogs"></i> DIY
+			        </a>
+			        <a href="https://forbot.pl/forum/index.php#" class="col bg-primary justify-content-center" onClick="gtag('event', 'Kafelki', { event_category: 'BOX', event_label: 'Forum'})">
+			            <i class="fas fa-comments"></i> Forum
+			        </a>
+			    </div>
+			</div>
+		</div>
+        
+<div class="row mt-1">
+    <div class="col-12 col-lg-8">
+                   
+		<div class="row" id="lista-postow">
+												<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/czujniki-wilgotnosci-gleby-dlaczego-sa-tak-problematyczne-id52948">Czujniki wilgotności gleby – dlaczego są tak problematyczne?</a></h2>
+		        <div class="post__info mb-2">
+		            <span class="post__category badge badge-danger">Polecane</span>
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/pgorecki'>Piotr Górecki</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/czujniki-wilgotnosci-gleby-dlaczego-sa-tak-problematyczne-id52948"><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/10/FORBOT_czujniki_wilgotnosci_gleby_mini-350x233.jpg" width="350" height="233" style="max-height: 233px !important;" data-no-lazy="1" class="img-fluid" alt="Czujniki wilgotności gleby – dlaczego są tak problematyczne?"></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop"><strong>Czujniki wilgotności gleby</strong> mogą być powodem wielu problemów, szczególnie jeśli w projekcie użyte zostaną te najpopularniejsze, tanie moduły.</p>
+<p class="text-justify-desktop" class="text-justify-desktop">Najbardziej popularne są <strong>rezystancyjne czujniki wilgotności gleby</strong>. Warto jednak zainteresować się innymi, zdecydowanie lepszymi czujnikami.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/czujniki-wilgotnosci-gleby-dlaczego-sa-tak-problematyczne-id52948">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/premiera-raspberry-pi-debug-probe-id54431">Premiera: Raspberry Pi Debug Probe</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/nowiny-i-ciekawostki/wiadomosci-o-raspberry-pi" rel="category tag">Wiadomości o Raspberry Pi</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/treker'>Damian (Treker) Szymański</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/premiera-raspberry-pi-debug-probe-id54431"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Premiera: Raspberry Pi Debug Probe" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2023/02/Raspberry_Pi_Debug_Probe_mini-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2023/02/Raspberry_Pi_Debug_Probe_mini-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Premiera: Raspberry Pi Debug Probe"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Kolejna nowość dla wszystkich fanów produktów fundacji <a href="https://forbot.pl/blog/leksykon/raspberry-pi-rpi">Raspberry Pi</a> już dostępna! Tym razem do malinowej rodziny dołącza <strong>narzędzie, które ułatwi pracę z Raspberry Pi Pico</strong>.</p>
+<p class="text-justify-desktop">Inżynierowie z Cambridge przygotowali niewielką sondę do debugowanie mikrokontrolera RP2040, która może też być konwerterem UART&lt;&gt;USB.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/premiera-raspberry-pi-debug-probe-id54431">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/historia-tranzystora-w-skrocie-wynalezienie-czy-odkrycie-id52867">Historia tranzystora w skrócie. Wynalezienie czy odkrycie?</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/artykuly/elektronika" rel="category tag">Elektronika</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/pgorecki'>Piotr Górecki</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/historia-tranzystora-w-skrocie-wynalezienie-czy-odkrycie-id52867"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Historia tranzystora w skrócie. Wynalezienie czy odkrycie?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/historia_tranzystora-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/historia_tranzystora-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Historia tranzystora w skrócie. Wynalezienie czy odkrycie?"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Wydaje się, że pierwszymi elementami czynnymi, czyli wzmacniającymi, były <strong>lampy elektronowe, które zastąpiono tranzystorami</strong>. Prawda jest jednak znacznie bogatsza i ciekawsza.</p>
+<p class="text-justify-desktop">To, co nazywa się wynalezieniem tranzystora, w rzeczywistości było <strong>przypadkowym odkryciem</strong> – rodzajem wypadku przy pracy.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/historia-tranzystora-w-skrocie-wynalezienie-czy-odkrycie-id52867">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/3-podstawowe-rodzaje-akumulatorow-ktore-warto-znac-id52876">3 podstawowe rodzaje akumulatorów, które warto znać</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/artykuly/elektronika" rel="category tag">Elektronika</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/pgorecki'>Piotr Górecki</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/3-podstawowe-rodzaje-akumulatorow-ktore-warto-znac-id52876"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="3 podstawowe rodzaje akumulatorów, które warto znać" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/rodzaje_baterii-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/rodzaje_baterii-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="3 podstawowe rodzaje akumulatorów, które warto znać"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop"><strong>Akumulatory litowe, kwasowe i zasadowe</strong> to trzy najpopularniejsze technologie, z którymi spotyka się praktycznie każdy z nas.</p>
+<p class="text-justify-desktop">Warto więc wiedzieć, jakie są wady i zalety konkretnych akumulatorów, jak je ładować i o czym jeszcze trzeba pamiętać. Pora też rozwiać kilka mitów i błędnych przekonań na ich temat.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/3-podstawowe-rodzaje-akumulatorow-ktore-warto-znac-id52876">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-33-id53803">Co ciekawego w DIY? 10 projektów naszych czytelników #33</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/inspiracje/ciekawe-projekty-diy" rel="category tag">Ciekawe DIY</a></span><span class="post__category badge badge-danger mr-1"><a href="https://forbot.pl/blog/kategoria/forbot" rel="category tag">FORBOT</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/treker'>Damian (Treker) Szymański</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-33-id53803"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #33" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2023/01/macintoshpi_DIY-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2023/01/macintoshpi_DIY-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #33"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Na naszym forum cały czas pojawiają się ciekawe projekty, których autorami są czytelnicy Forbota. Czy widzieliście już <a href="https://forbot.pl/forum/ourpicks/">wszystkie DIY</a>?</p>
+<p class="text-justify-desktop" class="text-justify-desktop">Pora na listę kolejnych projektów. W zestawieniu m.in. wirówka laboratoryjna, stacja pogodowa na bazie ESP z wyświetlaczem e-papierowym, robot kroczący oraz MacintoshPi.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-33-id53803">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/piezoelektryki-czym-sa-materialy-piezoelektryczne-id52879">Piezoelektryki – czym są materiały piezoelektryczne?</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/artykuly/elektronika" rel="category tag">Elektronika</a></span><span class="post__category badge badge-danger mr-1"><a href="https://forbot.pl/blog/kategoria/artykuly/mechanika" rel="category tag">Mechanika</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/pgorecki'>Piotr Górecki</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/piezoelektryki-czym-sa-materialy-piezoelektryczne-id52879"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Piezoelektryki – czym są materiały piezoelektryczne?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/10/piezoelektryki_mini-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/10/piezoelektryki_mini-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Piezoelektryki – czym są materiały piezoelektryczne?"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Piezoelektryki mogą wytwarzać wysokie napięcie lub odkształcać się pod wpływem zewnętrznego napięcia. Materiały piezoelektryczne używane są więc do budowy m.in. buzzerów i czujników.</p>
+<p class="text-justify-desktop">Elementy piezoelektryczne mają dziś zaskakująco wiele zastosowań. Dlatego warto wiedzieć, <strong>czym są materiały piezoelektryczne</strong>.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/piezoelektryki-czym-sa-materialy-piezoelektryczne-id52879">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/jak-czytac-oznaczenia-baterii-norma-iec-60086-1-w-praktyce-id52634">Jak czytać oznaczenia baterii? Norma IEC 60086-1 w praktyce</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/artykuly/elektronika" rel="category tag">Elektronika</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/pgorecki'>Piotr Górecki</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/jak-czytac-oznaczenia-baterii-norma-iec-60086-1-w-praktyce-id52634"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Jak czytać oznaczenia baterii? Norma IEC 60086-1 w praktyce" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/rodzaje_baterii_oznaczenia_mini-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/rodzaje_baterii_oznaczenia_mini-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Jak czytać oznaczenia baterii? Norma IEC 60086-1 w praktyce"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Popularne paluszki są znane jako baterie <strong>AA</strong>, <strong>R6</strong>, a nawet <strong>R14505</strong>. Oznaczenia, które pierwotnie miały pomagać w identyfikacji baterii, czasem wprowadzają jednak dużo zamieszania.</p>
+<p class="text-justify-desktop">Warto poznać podstawy normy <strong>IEC 60086-1</strong>, bo znakomicie ułatwi to rozszyfrowanie oznaczeń baterii, szczególnie tych mniej popularnych.&nbsp;</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/jak-czytac-oznaczenia-baterii-norma-iec-60086-1-w-praktyce-id52634">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/trwa-wyjatkowa-promocja-na-ksiazki-techniczne-druk-e-book-id54218">Wyjątkowa promocja na książki (druk, e-book)</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/ogloszenia" rel="category tag">Ogłoszenia</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/treker'>Damian (Treker) Szymański</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/trwa-wyjatkowa-promocja-na-ksiazki-techniczne-druk-e-book-id54218"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Wyjątkowa promocja na książki (druk, e-book)" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2021/03/ebooki_promo-350x233.png"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2021/03/ebooki_promo-350x233.png" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Wyjątkowa promocja na książki (druk, e-book)"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Trwa wielka promocja na książki, audiobooki oraz kursy wideo. <strong><a onClick="gtag('event', 'Wyjątkowa promocja na książki (druk, e-book)', { event_category: 'LinkiZewnetrzne', event_label: 'https://ebookpoint.pl/page/5806k/promocja/15671'})" target="_blank" rel="noopener noreferrer nofollow" href="https://ebookpoint.pl/page/5806k/promocja/15671">Zaczytani 2023</a></strong> to kolejna odsłona popularnej akcji rabatowej – tym razem promocja jest <strong>wyjątkowa i to z kilku względów</strong>.</p>
+<p class="text-justify-desktop">Około <strong>50 tysięcy propozycji</strong>, ceny od 6,90 zł do 39,90 zł. W tym cała masa tytułów o elektronice, IT, programowaniu, biznesie, ekonomii i nie tylko!</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/trwa-wyjatkowa-promocja-na-ksiazki-techniczne-druk-e-book-id54218">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-32-id53717">Co ciekawego w DIY? 10 projektów naszych czytelników #32</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/inspiracje/ciekawe-projekty-diy" rel="category tag">Ciekawe DIY</a></span><span class="post__category badge badge-danger mr-1"><a href="https://forbot.pl/blog/kategoria/forbot" rel="category tag">FORBOT</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/treker'>Damian (Treker) Szymański</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-32-id53717"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #32" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/robot_espbot_chwytak_mini_forbot_diy-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/robot_espbot_chwytak_mini_forbot_diy-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Co ciekawego w DIY? 10 projektów naszych czytelników #32"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop"><a href="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/mini_stock_placeholder.png"></a>Na naszym forum cały czas pojawiają się ciekawe projekty, których autorami są czytelnicy Forbota. Czy widzieliście już&nbsp;<a href="https://forbot.pl/forum/ourpicks/">wszystkie DIY</a>?</p>
+<p class="text-justify-desktop" class="text-justify-desktop">Pora na listę kolejnych projektów. W zestawieniu m.in. <strong>kilka różnych robotów</strong>, gadające przyrządy pomiarowe, automat do schładzania i dozowania drinków oraz pompa perystaltyczna.</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/co-ciekawego-w-diy-10-projektow-naszych-czytelnikow-32-id53717">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+									<div class="col-12 post">
+		        <h2><a href="https://forbot.pl/blog/jak-dziala-plyta-indukcyjna-czym-sa-prady-wirowe-id52963">Jak działa płyta indukcyjna? Czym są prądy wirowe?</a></h2>
+		        <div class="post__info mb-2">
+		            								<span class='post__category badge badge-danger mr-1'><a href="https://forbot.pl/blog/kategoria/artykuly/jak-to-dziala" rel="category tag">Jak to działa?</a></span>
+						
+		            <!-- <span class='post__date d-none d-md-inline mr-1 pl-0'> -->  <!-- </span> -->
+		            		            <span class='post__author mr-1'><a href='https://forbot.pl/blog/author/pgorecki'>Piotr Górecki</a></span>
+            				            <!-- <span class='post__tags d-none d-md-inline'><i class="fas fa-tags"></i></span> -->
+        					        </div>
+						        		        <div class="post__content">
+		            <div class="row">
+		                <div class="col-sm-8 offset-sm-2 col-md-5 offset-md-0 col-lg-6 text-right mb-2">
+		        
+		      				<a href="https://forbot.pl/blog/jak-dziala-plyta-indukcyjna-czym-sa-prady-wirowe-id52963"><img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20350%20233'%3E%3C/svg%3E" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Jak działa płyta indukcyjna? Czym są prądy wirowe?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/jak_dziala_indukcja_plyta_mini-350x233.jpg"><noscript><img src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/11/jak_dziala_indukcja_plyta_mini-350x233.jpg" width="350" height="233" style="max-height: 233px !important;"class="img-fluid" alt="Jak działa płyta indukcyjna? Czym są prądy wirowe?"></noscript></a></div><div class="col-12 col-md-7 col-lg-6"><p class="text-justify-desktop">Czy kuchenka indukcyjna, płyta indukcyjna, płyta elektryczna, indukcja i płyta ceramiczna to jedno i to samo, czy nie? Wątpliwości wynikają z faktu, że określenia te nie są precyzyjne.</p>
+<p class="text-justify-desktop">Zacznijmy więc od rozróżnienia tych nazw, aby możliwe było wytłumaczenie, <strong>jak działa płyta indukcyjna</strong> i co warto o niej wiedzieć?</p>
+<p class="text-right post__show-more"><a href="https://forbot.pl/blog/jak-dziala-plyta-indukcyjna-czym-sa-prady-wirowe-id52963">Czytaj całość&hellip;</a></p>
+								                </div>
+		                </div>
+		                 </div>
+		            			            
+		            
+		       
+
+			</div>
+						<script>
+				jQuery( "div#lista-postow .post img" ).removeClass( "lazyloaded" );
+			</script>
+		    <div class="col-12 post text-center">
+		    	<nav aria-label="Nawigacja, strony wpisów." class="col-12"><ul class="pagination justify-content-center"><li class="page-item disabled d-none d-xl-block"><a href="#" class="page-link">Strona 1/178</a></li><li class="page-item active"><a href="https://forbot.pl/blog/" class="page-link">1</a></li><li class="page-item"><a href="https://forbot.pl/blog/page/2" class="page-link">2</a></li><li class="page-item"><a href="https://forbot.pl/blog/page/3" class="page-link">3</a></li><li class="page-item"><a href="https://forbot.pl/blog/page/2"  aria-label="Następna" class="page-link"><i class="fas fa-angle-right"></i></a></li><li class="page-item"><a href="https://forbot.pl/blog/page/178" aria-label="Ostatnia" class="page-link"><i class="fas fa-angle-double-right"></i></a></li></ul></nav>		    	<a href="#" id="randomA" class="btn btn-success" onClick="gtag('event', 'Czytaj losowy artykuł', { event_category: 'CTA', event_label: ''})">Czytaj losowy artykuł <i class="fas fa-random"></i></a>
+		    	<script>document.getElementById('randomA').href = "/blog/odkryj-artykul?r=" + (new Date()).getTime() + Math.floor(Math.random() * 1000000);</script>
+			</div>
+		</div>
+    </div>
+    <div class="col-lg-4">
+    	<div id="sidebar" class="card-columns">
+    <div class="card card__custom mt-2 mt-lg-0">
+        <div class="card-header">
+            Kursy elektroniki i programowania
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush">
+                <a href="/blog/kurs-elektroniki-dla-poczatkujacych-id5151" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs podstaw elektroniki'})">
+                    Kurs podstaw elektroniki<span class="badge badge-pill badge-danger d-none d-xl-block">Zacznij tutaj</span>
+                </a>
+                 <a href="/blog/kurs-elektroniki-ii-spis-tresci-praktyczne-projekty-id10746" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs podstaw elektroniki II'})">
+                    Kurs elektroniki, poziom II
+                </a>
+                <a href="/blog/kurs-lutowania-wstep-spis-tresci-id12556" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs lutowania'})">
+                    Kurs podstaw lutowania
+                </a>
+                <a href="/blog//kurs-arduino-podstawy-programowania-spis-tresci-kursu-id5290" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs programowania Arduino'})">
+                    Kurs Arduino, poziom I (podstawy)
+                </a>
+                 <a href="/blog/kurs-raspberry-pi-od-podstaw-wstep-spis-tresci-id23139" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs Raspberry Pi'})">
+                    Kurs Raspberry Pi, poziom I (podstawy)
+                </a>
+                   <a href="/blog/kurs-stm32-l4-wstep-spis-tresci-dla-kogo-jest-ten-kurs-id48575" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs STM32L4'})">
+                    Kurs programowania STM32L4
+                </a>              
+                 <a href="/blog/kurs-microbit-wstep-spis-tresci-id41358" style="border-bottom: 0;" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Kurs micro:bit'})">
+                    Kurs micro:bit (dla dzieci i młodzieży)
+                </a>
+
+                <div class="list-group-item text-center pt-0 mt-2 pb-0" style="border-top: 0;">
+                 <a href="https://forbot.pl/blog/kursy" class="btn btn-success btn-block" onClick="gtag('event', 'Menu_Kursy', { event_category: 'Menu', event_label: 'Btn:Sprawdź wszystkie kursy'})">Sprawdź wszystkie kursy »</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card__custom card__bmf mt-1 mb-0" id="boxB" style="height: 82px; overflow: hidden; background-color: #fff; border-radius: 0;">
+        <div  class="forbo-3712385bac4e1ffeaa98d96162d615f2" id="forbo-3712385bac4e1ffeaa98d96162d615f2"></div>    </div>
+
+    <div class="card card__custom">
+        <div class="card-header">
+            Popularne
+        </div>
+        <div class="card-body">
+                
+
+
+<div class="list-group list-group-flush">
+<a href="https://forbot.pl/blog/kurs-elektroniki-dla-poczatkujacych-id5151" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Kurs elektroniki, poziom I (podstawy) &#8211; #0 &#8211; wstęp, spis treści" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/5151-featured-90x60.jpg"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/5151-featured-90x60.jpg" alt="Kurs elektroniki, poziom I (podstawy) &#8211; #0 &#8211; wstęp, spis treści" style="width:90px;height: 60px"></noscript></div><span>Kurs elektroniki, poziom I (podstawy) &#8211; #0 &#8211; wstęp, spis treści</span></a>
+<a href="https://forbot.pl/blog/kurs-elektroniki-napiecie-prad-opor-zasilanie-id3947" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Kurs elektroniki &#8211; #1 &#8211; napięcie, prąd, opór i zasilanie" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/3947-featured-90x60.jpg"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/3947-featured-90x60.jpg" alt="Kurs elektroniki &#8211; #1 &#8211; napięcie, prąd, opór i zasilanie" style="width:90px;height: 60px"></noscript></div><span>Kurs elektroniki &#8211; #1 &#8211; napięcie, prąd, opór i zasilanie</span></a>
+<a href="https://forbot.pl/blog/kurs-elektroniki-kondensatory-elektrolityczne-ceramiczne-id4236" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Kurs elektroniki &#8211; #4 &#8211; kondensatory, filtrowanie zasilania" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/4236-featured-90x60.jpg"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/4236-featured-90x60.jpg" alt="Kurs elektroniki &#8211; #4 &#8211; kondensatory, filtrowanie zasilania" style="width:90px;height: 60px"></noscript></div><span>Kurs elektroniki &#8211; #4 &#8211; kondensatory, filtrowanie zasilania</span></a>
+<a href="https://forbot.pl/blog/kurs-stm32-l4-wstep-spis-tresci-dla-kogo-jest-ten-kurs-id48575" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Kurs STM32L4 – #1 – wstęp, spis treści, dla kogo jest ten kurs" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/48575-featured-90x60.jpg"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/48575-featured-90x60.jpg" alt="Kurs STM32L4 – #1 – wstęp, spis treści, dla kogo jest ten kurs" style="width:90px;height: 60px"></noscript></div><span>Kurs STM32L4 – #1 – wstęp, spis treści, dla kogo jest ten kurs</span></a>
+<a href="https://forbot.pl/blog/kurs-elektroniki-diody-krzemowe-oraz-diody-swiecace-led-id4251" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Kurs elektroniki &#8211; #6 &#8211; diody krzemowe oraz świecące (LED)" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/4251-featured-90x60.jpg"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/4251-featured-90x60.jpg" alt="Kurs elektroniki &#8211; #6 &#8211; diody krzemowe oraz świecące (LED)" style="width:90px;height: 60px"></noscript></div><span>Kurs elektroniki &#8211; #6 &#8211; diody krzemowe oraz świecące (LED)</span></a>
+<a href="https://forbot.pl/blog/jak-dobrac-rezystor-do-diody-rozne-metody-zasilania-led-id14482" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Jak dobrać rezystor do diody? Różne metody zasilania LED!" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/14482-featured-90x60.png"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/14482-featured-90x60.png" alt="Jak dobrać rezystor do diody? Różne metody zasilania LED!" style="width:90px;height: 60px"></noscript></div><span>Jak dobrać rezystor do diody? Różne metody zasilania LED!</span></a>
+<a href="https://forbot.pl/blog/elektromagnes-budowa-zasada-dzialania-i-zastosowanie-id52296" class="list-group-item list-group-item-action"><div style="width: 90px;height: 60px;float:left;margin-right: 10px"><img width="90" height="60" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2090%2060'%3E%3C/svg%3E" alt="Elektromagnes – budowa, zasada działania i zastosowanie" style="width:90px;height: 60px" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/52296-featured-90x60.jpg"><noscript><img width="90" height="60" src="https://cdn.forbot.pl/blog/wp-content/uploads/wordpress-popular-posts/52296-featured-90x60.jpg" alt="Elektromagnes – budowa, zasada działania i zastosowanie" style="width:90px;height: 60px"></noscript></div><span>Elektromagnes – budowa, zasada działania i zastosowanie</span></a>
+
+</div>
+              
+        </div>
+    </div>
+
+    <div class="card card__custom card__bmf my-1 text-center" id="boxC">
+        <div  class="forbo-a57c0d4590c492566ac400e5f0834e9a forbo-box-c" id="forbo-a57c0d4590c492566ac400e5f0834e9a"></div>    </div>
+  <div class="card card__custom">
+        <div class="card-header">
+            Nowe posty z forum
+        </div>
+        <div class="card-body">
+            <div class="list-group list-group-flush" id="forum-topics">
+                <script>jQuery("#forum-topics").load("/blog/wp-content/themes/frwd/tematyForumCached.php?r=" + (new Date()).getTime() + Math.floor(Math.random() * 1000000));</script>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card__custom" style="margin-bottom: 1.75rem;">
+        <div class="card-header">
+            Hosting zapewnia LH.pl
+        </div>
+         <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item">
+                        <a href="https://www.lh.pl/" class="card__bmf" target="_blank" rel="noopener noreferrer" onClick="gtag('event', 'Współpraca', { event_category: 'Menu', event_label: 'LH.pl'})">
+                            <img width="176" height="60" class="card-img-top" style="padding: 5px 0;" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20176%2060'%3E%3C/svg%3E" alt="Serwery LH.pl" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/themes/frwd/images/LH_logotyp_2020.png"><noscript><img width="176" height="60" class="card-img-top" style="padding: 5px 0;" src="https://cdn.forbot.pl/blog/wp-content/themes/frwd/images/LH_logotyp_2020.png" alt="Serwery LH.pl"></noscript>
+                        </a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--
+    <div class="card card__custom">
+        <div class="card-header">
+            FORBOT na Facebooku
+        </div>
+        <div class="fb-page" data-href="https://www.facebook.com/ForbotPL/" data-width="350" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/ForbotPL/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/ForbotPL/">Forbot</a></blockquote></div>
+    </div>
+
+-->
+<!--
+    <div class="card card__custom mb-3" id="powiadomieniaMailowe_nbkp">
+      
+        <div class="card-header">
+            Sprawdź inspirujące projekty
+        </div>
+       
+        <div class="card-body">
+            <div class="list-group">
+                <div class="list-group-item" style="background-color: #2c3e50; color: white;">
+
+                    <div id="">
+                            <div id="powiadomieniaMailoweSrodek_nbkp">
+                                <p style="font-size: 15px;">
+                                    Dołącz do ponad 5000 osób, które otrzymują powiadomienia o naszych nowych artykułach (zero spamu, same konkrety)! <strong>Zapisz się, a&nbsp;otrzymasz:</strong> 6 popularnych poradników o&nbsp;elektronice oraz przykłady inspirujących projektów na&nbsp;bazie Arduino i&nbsp;Raspberry Pi!
+                                </p>
+                                <form id="powiadomieniaMailoweFormularz_nbkp" method="post">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="Twoje imię..." maxlength="15" autocomplete="off" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="mail" placeholder="Twój adres e-mail..." autocomplete="off" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="zrodlo" value="RejestracjaBoxBlog_nowy_kolumna_niebieski">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Zapisz się » <i class="fas fa-spinner fa-spin text-white" id="mailLoader_nbkp"  style="display: none;"></i></button> 
+                                </form>
+                            </div>
+
+                            <div id="result_nbkp" class="text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div class="card card__custom mb-3" id="powiadomieniaMailowe_nbkp">
+      
+        <div class="card-header">
+            Pobierz ściągi PDF
+        </div>
+       
+        <div class="card-body">
+            <div class="list-group">
+                <div class="list-group-item" style="">
+
+                    <div id="">
+                            <div id="powiadomieniaMailoweSrodek_nbkp">
+                                <p style="font-size: 15px;">
+                                    Dołącz do 20&nbsp;tysięcy osób, które otrzymują powiadomienia o nowych artykułach! Zapisz się, a&nbsp;<strong>otrzymasz PDF-y ze ściągami</strong> (m.in. na temat mocy, tranzystorów, diod i&nbsp;schematów) oraz listę inspirujących DIY z Arduino i RPi.
+                                </p>
+                                <form id="powiadomieniaMailoweFormularz_nbkp" method="post">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="Twoje imię..." maxlength="15" autocomplete="off" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="mail" placeholder="Twój adres e-mail..." autocomplete="off" required>
+                                    </div>
+                                    <input type="hidden" class="form-control" name="zrodlo" value="RejestracjaBoxBlog_nowy_kolumna_niebieski">
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Zapisz się » <i class="fas fa-spinner fa-spin text-white" id="mailLoader_nbkp"  style="display: none;"></i></button> 
+                                </form>
+                            </div>
+
+                            <div id="result_nbkp" class="text-center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="sticky-top" style="top: 5px; position:-webkit-sticky;position:sticky;top:0;z-index:1020">
+        <div class="card card__custom">
+            <div class="card-header">
+                Warto przeczytać
+                            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <a href="https://forbot.pl/blog/uklad-scalony-czym-jest-i-jak-powstaje-czym-sa-czipy-id52503" class="list-group-item list-group-item-action" onClick="gtag('event', 'Menu_Najnowsze', { event_category: 'Menu', event_label: 'Układ scalony – czym jest i jak powstaje? Czym są czipy?'})"><div style="width: 90px; height: 60px; float:left; margin-right: 10px"><img width="180" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20120'%3E%3C/svg%3E" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Układ scalony – czym jest i jak powstaje? Czym są czipy?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/uklady_scalone_ogolne_2-180x120.jpg" /><noscript><img width="180" height="120" src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/08/uklady_scalone_ogolne_2-180x120.jpg" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Układ scalony – czym jest i jak powstaje? Czym są czipy?" /></noscript></div><span>Układ scalony – czym jest i jak powstaje? Czym są czipy?</span></a><a href="https://forbot.pl/blog/czym-jest-dokumentacja-techniczna-datasheet-id53134" class="list-group-item list-group-item-action" onClick="gtag('event', 'Menu_Najnowsze', { event_category: 'Menu', event_label: 'Czym jest dokumentacja techniczna (datasheet)?'})"><div style="width: 90px; height: 60px; float:left; margin-right: 10px"><img width="180" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20120'%3E%3C/svg%3E" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Czym jest dokumentacja techniczna (datasheet)?" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/CNK_czytanie_not_mini-180x120.jpg" /><noscript><img width="180" height="120" src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/09/CNK_czytanie_not_mini-180x120.jpg" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Czym jest dokumentacja techniczna (datasheet)?" /></noscript></div><span>Czym jest dokumentacja techniczna (datasheet)?</span></a><a href="https://forbot.pl/blog/transformator-budowa-zasada-dzialania-i-zastosowanie-id52093" class="list-group-item list-group-item-action" onClick="gtag('event', 'Menu_Najnowsze', { event_category: 'Menu', event_label: 'Transformator – budowa, zasada działania i zastosowanie'})"><div style="width: 90px; height: 60px; float:left; margin-right: 10px"><img width="180" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20120'%3E%3C/svg%3E" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Transformator – budowa, zasada działania i zastosowanie" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/07/Transformatory_miniaturowe_PCB-180x120.jpg" /><noscript><img width="180" height="120" src="https://cdn.forbot.pl/blog/wp-content/uploads/2022/07/Transformatory_miniaturowe_PCB-180x120.jpg" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Transformator – budowa, zasada działania i zastosowanie" /></noscript></div><span>Transformator – budowa, zasada działania i zastosowanie</span></a><a href="https://forbot.pl/blog/jak-dziala-plytka-stykowa-zdjecia-budowa-przyklady-id21978" class="list-group-item list-group-item-action" onClick="gtag('event', 'Menu_Najnowsze', { event_category: 'Menu', event_label: 'Jak działa płytka stykowa? Zdjęcia, budowa, przykłady'})"><div style="width: 90px; height: 60px; float:left; margin-right: 10px"><img width="145" height="95" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20145%2095'%3E%3C/svg%3E" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Jak działa płytka stykowa? Zdjęcia, budowa, przykłady" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2017/08/plytki_stykowe_rozne-145x95.png" /><noscript><img width="145" height="95" src="https://cdn.forbot.pl/blog/wp-content/uploads/2017/08/plytki_stykowe_rozne-145x95.png" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Jak działa płytka stykowa? Zdjęcia, budowa, przykłady" /></noscript></div><span>Jak działa płytka stykowa? Zdjęcia, budowa, przykłady</span></a><a href="https://forbot.pl/blog/premiera-raspberry-pi-debug-probe-id54431" class="list-group-item list-group-item-action" onClick="gtag('event', 'Menu_Najnowsze', { event_category: 'Menu', event_label: 'Premiera: Raspberry Pi Debug Probe'})"><div style="width: 90px; height: 60px; float:left; margin-right: 10px"><img width="180" height="120" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20180%20120'%3E%3C/svg%3E" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Premiera: Raspberry Pi Debug Probe" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2023/02/Raspberry_Pi_Debug_Probe_mini-180x120.jpg" /><noscript><img width="180" height="120" src="https://cdn.forbot.pl/blog/wp-content/uploads/2023/02/Raspberry_Pi_Debug_Probe_mini-180x120.jpg" style="border: 1px solid rgba(0,0,0,0.125); width:90px; height: 60px" alt="Premiera: Raspberry Pi Debug Probe" /></noscript></div><span>Premiera: Raspberry Pi Debug Probe</span></a>                </div>
+            </div>
+        </div>
+        <div class="card card__custom">
+            <!-- <div class="card-header">
+                Popularne kursy
+            </div> -->
+            <div class="card-body mt-1">
+                <a href="https://forbot.pl/blog/kurs-arduino-podstawy-programowania-spis-tresci-kursu-id5290" class="btn btn-info btn-block" onClick="gtag('event', 'Menu_Polecane', { event_category: 'Menu', event_label: 'Kurs Arduino'})">Kurs Arduino, poziom I</a>
+                <a href="https://forbot.pl/blog/kurs-lutowania-wstep-spis-tresci-id12556" class="btn btn-danger btn-block" onClick="gtag('event', 'Menu_Polecane', { event_category: 'Menu', event_label: 'Kurs Lutowania'})">Kurs podstaw lutowania</a>
+                <a href="https://forbot.pl/blog/kurs-elektroniki-ii-spis-tresci-praktyczne-projekty-id10746" class="btn btn-warning btn-block" onClick="gtag('event', 'Menu_Polecane', { event_category: 'Menu', event_label: 'Kurs Elektroniki II'})">Kurs elektroniki, poziom II</a>
+                <a href="https://forbot.pl/ekstra/product/jak-czytac-noty-katalogowe-e-book/" class="btn btn-success btn-block" target="_blank" onClick="gtag('event', 'Menu_Polecane', { event_category: 'Menu', event_label: 'CNK'})">Jak czytać noty katalogowe?</a>
+                <a href="https://4bot.pl/Utfj8" class="btn btn-outline-danger btn-block" target="_blank" onClick="gtag('event', 'Menu_Polecane', { event_category: 'Menu', event_label: 'YouTube'})">Subskrybuj FORBOT na YouTube »</a>
+            </div>
+        </div>
+        <style>
+          #konkursFixed img{
+            opacity: 0.4;
+          }
+          
+          #konkursFixed img:hover {
+            opacity: 1;
+          }
+        </style>
+        <!--
+            <a href="https://4bot.pl/konkurs2021blog" target="_blank" id="konkursFixed"><img width="230" height="153" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20230%20153'%3E%3C/svg%3E" class="mx-auto d-block mt-2" data-lazy-src="https://cdn.forbot.pl/blog/wp-content/uploads/2021/02/konkurs_box_1.png"><noscript><img width="230" height="153" src="https://cdn.forbot.pl/blog/wp-content/uploads/2021/02/konkurs_box_1.png" class="mx-auto d-block mt-2"></noscript></a>
+        -->
+
+    </div>
+    </div>
+</div>
+	<div class="container" id="front_desc">
+	    <div class="row">
+	        <div class="col text-left">
+				<h1>Blog o elektronice, Arduino i&nbsp;Raspberry Pi</h1>
+				<p class="text-justify-desktop">Blog o elektronice Forbot to strefa wiedzy, w&nbsp;której można znaleźć szereg interesujących artykułów napisanych przystępnym i&nbsp;zrozumiałym językiem. Serwis jest tworzony przez miłośników elektroniki i&nbsp;programowania. Udostępniane treści charakteryzują się zróżnicowanym poziomem trudności. Osoby początkujące pragnące poznać podstawy elektroniki z pewnością znajdą tu szereg wartościowych publikacji (np. <a href="https://forbot.pl/blog/kurs-elektroniki-dla-poczatkujacych-id5151">kurs elektroniki</a>), które szczegółowo wyjaśniają skomplikowane zagadnienia. Dostępne są również materiały dla średniozaawansowanych i&nbsp;zaawansowanych użytkowników (np. <a href="https://forbot.pl/blog/kurs-stm32-l4-wstep-spis-tresci-dla-kogo-jest-ten-kurs-id48575">kurs STM32</a>).</p>
+				<h2>Blog o elektronice - materiały dla każdego</h2>
+				<p class="text-justify-desktop">Na łamach bloga można znaleźć szereg interesujących i&nbsp;praktycznych wpisów dla początkujących entuzjastów elektroniki i&nbsp;programowania. Dostępne są tu publikacje czysto teoretyczne, które krok po kroku wyjaśniają np. działanie urządzeń lub elementów elektrycznych. Proponujemy również wpisy typowo praktyczne zawierające szczegółowe instrukcje, dzięki którym wykonanie projektu nie stanowi żadnego problemu. Do lektury naszego bloga szczególnie zachęcamy osoby, które chcą poznać podstawy elektroniki. Przywiązujemy szczególną wagę do artykułów dla osób początkujących. Unikamy skomplikowanych wyrażeń i&nbsp;niezrozumiałego słownictwa. Przedstawiamy świat elektroniki i&nbsp;programowania w&nbsp;prosty sposób, dzięki czemu każdy może rozpocząć naukę teorii i&nbsp;praktyki, bez względu na wiek. <a href="https://forbot.pl/blog/kurs-lutowania-wstep-spis-tresci-id12556">Chcesz nauczyć się lutowania?</a> A może ciekawi Cię jakie funkcje pełnią i&nbsp;do czego są wykorzystywane poszczególne elementy elektroniczne? Wszystko to i&nbsp;wiele więcej znajdziesz w&nbsp;tym miejscu.</p>
+				<h2>Blog o elektronice - Arduino i&nbsp;Raspberry Pi</h2>
+				<p class="text-justify-desktop">Na łamach bloga znajdziesz szereg wyczerpujących publikacji dotyczących najpopularniejszej obecnie płytki edukacyjnej z mikrokontrolerem, czyli Arduino. Na ich podstawie wykonasz zarówno podstawowe, jak i&nbsp;średnio zaawansowane oraz zaawansowane projekty z wykorzystaniem Arduino. Chcesz zbudować robota, odkurzacz, instrument muzyczny, grę odtwarzacz muzyczny na bazie mikrokontrolera? Nic prostszego. Wystarczy, że odszukasz odpowiedni artykuł, wykorzystując lupę znajdującą się w&nbsp;górnej części strony. Być może chcesz rozpocząć przygodę z najpopularniejszym na świecie minikomputerem, czyli Raspberry Pi? Ciekawi Cię do jakich projektów można wykorzystać malinę? A może chcesz poznać jej potencjał? Na łamach naszego bloga znajdziesz wiele merytorycznych artykułów dotyczących Raspberry Pi. Zachęcamy do zapoznania się z materiałami poradnikowymi, w&nbsp;których krok po kroku rozwiązujemy popularne problemy dotyczące Arduino i&nbsp;minikomputera Raspberry Pi.</p>
+				<h2>Praktyczne kursy elektroniki</h2>
+				<p class="text-justify-desktop">Na szczególną uwagę zasługują <a href="https://forbot.pl/kursy">darmowe kursy</a> dotyczące elektroniki, programowania od podstaw oraz pierwszych kroków z <a href="https://forbot.pl/blog/kurs-arduino-podstawy-programowania-spis-tresci-kursu-id5290">Arduino</a> i&nbsp;<a href="https://forbot.pl/blog/kurs-raspberry-pi-od-podstaw-wstep-spis-tresci-id23139">Raspberry Pi</a>. Ponadto na łamach naszego bloga można znaleźć kursy elektroniki dla średniozaawansowanych i&nbsp;zaawansowanych osób. Każdy kurs zawiera spis treści ułatwiający nawigację. Wszystkie moduły są połączone w&nbsp;logiczną całość, dzięki czemu każda osoba może wybrać kurs dopasowany do konkretnego poziomu wiedzy i&nbsp;umiejętności.</p>
+				<h2>Aktywnie działające forum</h2>
+				<p class="text-justify-desktop">Czym byłby nasz blog bez aktywnie działającego <a href="https://forbot.pl/forum/">forum o elektronice</a>, na którym użytkownicy mogą dzielić się swoimi spostrzeżeniami i&nbsp;projektami oraz wspólnie rozwiązywać problemy? Na naszym forum działa wielu użytkowników, którzy chętnie podzielą się swoją wiedzą z innymi osobami i&nbsp;pomogą w&nbsp;rozwiązaniu wielu problemu (szczególnie na <a href="https://forbot.pl/forum/kategoria/41-arduino-i-esp/">forum o Arduino</a>). Do zobaczenia online!</p>
+	        </div>
+	    </div>
+	</div>
+
+           </main>
+           <footer>
+            <div id="f">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xss-6 col-md-2 text-sm-center text-md-left">
+                            <p class="p__h4">Informacje</p>
+                            <ul style="padding-left: 0px;">
+                                <li><a href="/blog/o-stronie">O stronie</a></li>
+                                <li><a href="/blog/codzienne-powiadomienia-nowych-artykulach">Newsletter</a></li>
+                                <li><a href="/blog/wspolpraca">Współpraca i reklama</a></li>
+                                <li><a href="/blog/wspolpraca/wspolpraca-en">Cooperation and ads</a></li>
+                                <li><a href="/blog/zostan-autorem-dolacz-do-redakcji">Zostań autorem</a></li>
+                                <li><a href="https://www.facebook.com/ForbotPL" target="_blank" rel="noopener noreferrer">FORBOT na Facebooku</a></li>
+                                <li><a href="/blog/kanal-rss">Kanał RSS</a></li>
+                                <li><a href="/blog/kontakt">Kontakt</a></li>
+                                <li><a href="/blog/regulamin">Regulamin</a></li>
+                                <li><a href="/blog/regulamin#pp">Polityka prywatności</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-xss-6 col-md-2 text-sm-center text-md-left" style="padding-right: 10px; padding-left: 10px;">
+                            <p class="p__h4">Ważne linki</p>
+                            <ul style="padding-left: 0px;">
+                                <li><a href="/forum/">Forum</a></li>
+                                <li><strong><a href="/blog/kurs-elektroniki-napiecie-prad-opor-zasilanie-id3947">Kurs elektroniki</a></strong></li>
+                                <li><strong><a href="/blog/artykuly/programowanie/kurs-arduino-0-zapowiedz-cyklu-id5290">Kurs Arduino</a></strong></li>
+                                <li><strong><a href="/blog/kurs-raspberry-pi-od-podstaw-wstep-spis-tresci-id23139">Kurs Raspberry Pi</a></strong></li>
+                            </ul>
+                            <p class="p__h4">Katalog firm</p>
+                            <ul style="padding-left: 0px; margin-right: -12px;">
+                                <li><a href="https://botland.com.pl/" target="_blank" rel="noopener noreferrer">Botland - sklep elektroniczny</a></li>
+                                <li><strong><a href="/blog/katalog-firm">Polecane firmy (90+) »</a></strong></li>
+                            </ul>
+                        </div>
+                        <div class="col-xss-6 col-md-2 d-none d-sm-block text-sm-center text-md-left">
+                            <p class="p__h4">Artykuły</p>
+                            <ul>
+                                	<li class="cat-item cat-item-2130"><a href="https://forbot.pl/blog/kategoria/artykuly/teoria">Teoria</a>
+</li>
+	<li class="cat-item cat-item-2112"><a href="https://forbot.pl/blog/kategoria/artykuly/bbc-microbit">BBC micro:bit</a>
+</li>
+	<li class="cat-item cat-item-2117"><a href="https://forbot.pl/blog/kategoria/artykuly/fpga">FPGA</a>
+</li>
+	<li class="cat-item cat-item-2127"><a href="https://forbot.pl/blog/kategoria/artykuly/komputery-jednoplytkowe-sbc">Komputery SBC</a>
+</li>
+	<li class="cat-item cat-item-159"><a href="https://forbot.pl/blog/kategoria/artykuly/cad">CAD</a>
+</li>
+	<li class="cat-item cat-item-2097"><a href="https://forbot.pl/blog/kategoria/artykuly/jak-to-dziala">Jak to działa?</a>
+</li>
+	<li class="cat-item cat-item-2129"><a href="https://forbot.pl/blog/kategoria/artykuly/elektronika">Elektronika</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="https://forbot.pl/blog/kategoria/artykuly/mechanika">Mechanika</a>
+</li>
+	<li class="cat-item cat-item-2128"><a href="https://forbot.pl/blog/kategoria/artykuly/pozostale-artykuly">Pozostałe</a>
+</li>
+	<li class="cat-item cat-item-2102"><a href="https://forbot.pl/blog/kategoria/artykuly/stm32">STM32</a>
+</li>
+	<li class="cat-item cat-item-2099"><a href="https://forbot.pl/blog/kategoria/artykuly/poradniki-o-raspberry-pi">Poradniki o Raspberry Pi</a>
+</li>
+	<li class="cat-item cat-item-2113"><a href="https://forbot.pl/blog/kategoria/artykuly/robotyka">Robotyka</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="https://forbot.pl/blog/kategoria/artykuly/programowanie">Programowanie</a>
+</li>
+	<li class="cat-item cat-item-2115"><a href="https://forbot.pl/blog/kategoria/artykuly/poradniki-o-arduino">Poradniki o Arduino</a>
+</li>
+	<li class="cat-item cat-item-2098"><a href="https://forbot.pl/blog/kategoria/artykuly/podstawy-elektroniki">Podstawy elektroniki</a>
+</li>
+                            </ul>
+                        </div>
+                        <div class="col-xss-12 col-md-6 text-center tag-cloud">
+                            <p class="p__h4">Losowe hasło z leksykonu elektroniki</p><p style="color: #adb5bd"><strong><a href="https://forbot.pl/blog/leksykon/plytka-stykowa" style="text-decoration: underline">Płytka stykowa</a></strong>  to element wyposażenia warsztatu elektronicznego, dzięki któremu można budować praktycznie dowolne układy elektroniczne bez potrzeby lutowania. Płytka styk... <a href="https://forbot.pl/blog/leksykon/plytka-stykowa" style="text-decoration: underline">Czytaj dalej »</a></p>                
+                            <p class="p__h4">Popularne tagi</p>
+                                <a href="https://forbot.pl/blog/tag/drony" class="tag-cloud-link tag-link-193 tag-link-position-1" style="font-size: 12pt;" aria-label="drony (41 elementów)">drony</a>
+<a href="https://forbot.pl/blog/tag/robotyka" class="tag-cloud-link tag-link-16 tag-link-position-2" style="font-size: 12.153846153846pt;" aria-label="robotyka (43 elementy)">robotyka</a>
+<a href="https://forbot.pl/blog/tag/inspiracja" class="tag-cloud-link tag-link-1818 tag-link-position-3" style="font-size: 12.461538461538pt;" aria-label="inspiracja (47 elementów)">inspiracja</a>
+<a href="https://forbot.pl/blog/tag/iot" class="tag-cloud-link tag-link-891 tag-link-position-4" style="font-size: 13.384615384615pt;" aria-label="IoT (62 elementy)">IoT</a>
+<a href="https://forbot.pl/blog/tag/kickstarter" class="tag-cloud-link tag-link-791 tag-link-position-5" style="font-size: 13.461538461538pt;" aria-label="kickstarter (64 elementy)">kickstarter</a>
+<a href="https://forbot.pl/blog/tag/projekt" class="tag-cloud-link tag-link-71 tag-link-position-6" style="font-size: 13.538461538462pt;" aria-label="projekt (65 elementów)">projekt</a>
+<a href="https://forbot.pl/blog/tag/konkurs" class="tag-cloud-link tag-link-241 tag-link-position-7" style="font-size: 13.769230769231pt;" aria-label="konkurs (70 elementów)">konkurs</a>
+<a href="https://forbot.pl/blog/tag/stm32" class="tag-cloud-link tag-link-212 tag-link-position-8" style="font-size: 13.769230769231pt;" aria-label="stm32 (70 elementów)">stm32</a>
+<a href="https://forbot.pl/blog/tag/elektronika" class="tag-cloud-link tag-link-14 tag-link-position-9" style="font-size: 14.153846153846pt;" aria-label="elektronika (79 elementów)">elektronika</a>
+<a href="https://forbot.pl/blog/tag/diy" class="tag-cloud-link tag-link-103 tag-link-position-10" style="font-size: 14.307692307692pt;" aria-label="diy (82 elementy)">diy</a>
+<a href="https://forbot.pl/blog/tag/roboty" class="tag-cloud-link tag-link-216 tag-link-position-11" style="font-size: 14.384615384615pt;" aria-label="roboty (85 elementów)">roboty</a>
+<a href="https://forbot.pl/blog/tag/forbot-2" class="tag-cloud-link tag-link-180 tag-link-position-12" style="font-size: 14.538461538462pt;" aria-label="forbot (88 elementów)">forbot</a>
+<a href="https://forbot.pl/blog/tag/druk-3d-2" class="tag-cloud-link tag-link-414 tag-link-position-13" style="font-size: 14.692307692308pt;" aria-label="druk 3d (92 elementy)">druk 3d</a>
+<a href="https://forbot.pl/blog/tag/projekty" class="tag-cloud-link tag-link-304 tag-link-position-14" style="font-size: 14.769230769231pt;" aria-label="projekty (94 elementy)">projekty</a>
+<a href="https://forbot.pl/blog/tag/zawody-2" class="tag-cloud-link tag-link-168 tag-link-position-15" style="font-size: 15pt;" aria-label="zawody (101 elementów)">zawody</a>
+<a href="https://forbot.pl/blog/tag/programowanie-2" class="tag-cloud-link tag-link-30 tag-link-position-16" style="font-size: 15.615384615385pt;" aria-label="programowanie (121 elementów)">programowanie</a>
+<a href="https://forbot.pl/blog/tag/raspberrypi" class="tag-cloud-link tag-link-283 tag-link-position-17" style="font-size: 15.692307692308pt;" aria-label="raspberrypi (124 elementy)">raspberrypi</a>
+<a href="https://forbot.pl/blog/tag/kurs" class="tag-cloud-link tag-link-29 tag-link-position-18" style="font-size: 16pt;" aria-label="kurs (138 elementów)">kurs</a>
+<a href="https://forbot.pl/blog/tag/robot" class="tag-cloud-link tag-link-12 tag-link-position-19" style="font-size: 17pt;" aria-label="robot (185 elementów)">robot</a>
+<a href="https://forbot.pl/blog/tag/arduino" class="tag-cloud-link tag-link-91 tag-link-position-20" style="font-size: 18pt;" aria-label="arduino (251 elementów)">arduino</a>                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ff">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            FORBOT Damian Szymański &copy; <strong>2006 - 2023</strong> Zakaz kopiowania treści i grafik bez zgody autora. Strona używa ciasteczek (plików <i>cookies</i>), dzięki którym może działać lepiej. <a href="/blog/regulamin#pp"> Dowiedz się więcej »</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>window.advanced_ads_check_adblocker=function(t){var n=[],e=null;function i(t){(window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||function(t){return setTimeout(t,16)}).call(window,t)}return i((function(){var t=document.createElement("div");t.innerHTML="&nbsp;",t.setAttribute("class","ad_unit ad-unit text-ad text_ad pub_300x250"),t.setAttribute("style","width: 1px !important; height: 1px !important; position: absolute !important; left: 0px !important; top: 0px !important; overflow: hidden !important;"),document.body.appendChild(t),i((function(){var i=window.getComputedStyle&&window.getComputedStyle(t),o=i&&i.getPropertyValue("-moz-binding");e=i&&"none"===i.getPropertyValue("display")||"string"==typeof o&&-1!==o.indexOf("about:");for(var a=0,r=n.length;a<r;a++)n[a](e);n=[]}))})),function(t){null!==e?t(e):n.push(t)}}();</script><script type='text/javascript' id='advanced-ads-pro/front-js-extra'>
+/* <![CDATA[ */
+var advadsCfpInfo = {"cfpExpHours":"3","cfpClickLimit":"3","cfpBan":"7","cfpPath":"\/blog","cfpDomain":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/plugins/advanced-ads-pro/assets/js/advanced-ads-pro.min.js?ver=2.21.1' id='advanced-ads-pro/front-js' defer></script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/themes/frwd/js/popper.min.js' id='js-popper-js' defer></script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/themes/frwd/js/bootstrap.min.js' id='js-bootstrap-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://forbot.pl/blog/wp-content/cache/min/1/blog/wp-content/plugins/wp-gallery-custom-links/wp-gallery-custom-links.js?ver=1675415015' id='wp-gallery-custom-links-js-js' defer></script>
+<script type='text/javascript' id='advanced-ads-pro/cache_busting-js-extra'>
+/* <![CDATA[ */
+var advanced_ads_pro_ajax_object = {"ajax_url":"https:\/\/forbot.pl\/blog\/wp-admin\/admin-ajax.php","lazy_load_module_enabled":"1","lazy_load":{"default_offset":300,"offsets":[]},"moveintohidden":"","wp_timezone_offset":"3600"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/plugins/advanced-ads-pro/assets/js/base.min.js?ver=2.21.1' id='advanced-ads-pro/cache_busting-js' defer></script>
+<script type='text/javascript' id='advadsTrackingScript-js-extra'>
+/* <![CDATA[ */
+var advadsTracking = {"impressionActionName":"aatrack-records","clickActionName":"aatrack-click","targetClass":"forbo-target","blogId":"1","frontendPrefix":"forbo-"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/plugins/advanced-ads-tracking/public/assets/js/dist/tracking.min.js?ver=2.4.3' id='advadsTrackingScript-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://forbot.pl/blog/wp-content/plugins/wp-rocket/assets/js/heartbeat.js?ver=3.12.5.3' id='heartbeat-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://forbot.pl/blog/wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1' id='ez-toc-js-cookie-js' defer></script>
+<script type='text/javascript' src='https://forbot.pl/blog/wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2' id='ez-toc-jquery-sticky-kit-js' defer></script>
+<script type='text/javascript' id='ez-toc-js-js-extra'>
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","scroll_offset":"30"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://forbot.pl/blog/wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.45.1-1676442798' id='ez-toc-js-js' defer></script>
+<!--noptimize--><script>window.advads_admin_bar_items = [];</script><!--/noptimize--><!--noptimize--><script>window.advads_passive_groups = {"1578_1":{"type":"group","id":1578,"elementid":["forbo-627e731e7ed0590a5f49030e1d72bddf"],"ads":{"51754":{"id":51754,"title":"AMD3D - BOX-A - druk 3D","expiry_date":1681595940,"visitors":[],"content":"<div data-forbo-trackid=\"51754\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-100388103\"><a data-no-instant href=\"https:\/\/am3d.pl\/linia-produkcyjna\/projektowanie-3d\/\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2022\/02\/AM3D.png\" alt=\"\"  width=\"468\" height=\"60\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"none","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}},"27696":{"id":27696,"title":"TME - BOX-A","expiry_date":0,"visitors":[],"content":"<div data-forbo-trackid=\"27696\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-1059863975\"><a data-no-instant href=\"https:\/\/4bot.pl\/cEm3a\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2018\/08\/TME_BOXA_Arduino.png\" alt=\"Arduino w TME\"  width=\"468\" height=\"60\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}},"36286":{"id":36286,"title":"PCBWay - BOX-A - 2019","expiry_date":0,"visitors":[],"content":"<div data-forbo-trackid=\"36286\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-665767148\"><a data-no-instant href=\"https:\/\/4bot.pl\/fRcag\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/PCBWay_2019_BOXA_v1.png\" alt=\"Szybka produkcja prototyp\u00f3w PCB (24 godziny)\"  width=\"468\" height=\"60\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"group_info":{"id":1578,"name":"BOX-A","weights":{"36641":10,"36286":10,"27696":10,"51754":10},"type":"default","ordered_ad_ids":[51754,27696,36286],"ad_count":1}},"1579_3":{"type":"group","id":1579,"elementid":["forbo-3712385bac4e1ffeaa98d96162d615f2"],"ads":{"36313":{"id":36313,"title":"ELTY - BOX-B - 2019 - 2","expiry_date":0,"visitors":[],"content":"<div class=\"border1 forbo-target\" id=\"forbo-1498025840\" data-forbo-trackid=\"36313\" data-forbo-trackbid=\"1\"><a data-no-instant href=\"https:\/\/elty.pl\/pl\/c\/Nextion-HMI\/241\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/ELTY_BOXB_1_NEXTION.png\" alt=\"Wy\u015bwietlacze graficzne Nextion\"  width=\"350\" height=\"80\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"day_indexes":[2,5],"privacy":{"ignore":false,"needs_consent":false}},"36309":{"id":36309,"title":"ELTY - BOX-B - 2019 - 1","expiry_date":0,"visitors":[],"content":"<div class=\"border1 forbo-target\" id=\"forbo-1011787453\" data-forbo-trackid=\"36309\" data-forbo-trackbid=\"1\"><a data-no-instant href=\"https:\/\/elty.pl\/pl\/c\/Sonoff-sterowniki-WiFi-IoT\/255\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/ELTY_BOXB_1_Sonoff.png\" alt=\"Sonoff - przeka\u017aniki WiFI\"  width=\"350\" height=\"80\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"day_indexes":[1,4,0],"privacy":{"ignore":false,"needs_consent":false}},"36314":{"id":36314,"title":"ELTY - BOXB - 2019 - 3","expiry_date":0,"visitors":[],"content":"<div class=\"border1 forbo-target\" id=\"forbo-1845306930\" data-forbo-trackid=\"36314\" data-forbo-trackbid=\"1\"><a data-no-instant href=\"https:\/\/elty.pl\/pl\/searchquery\/esp\/1\/phot\/5?url=esp\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/ELTY_BOXB_1_ESP.png\" alt=\"Modu\u0142y ESP WiFi (ESP8266\/ESP32)\"  width=\"350\" height=\"80\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"day_indexes":[3,6],"privacy":{"ignore":false,"needs_consent":false}},"54405":{"id":54405,"title":"MEPAX - BOX-B - 2023\/24","expiry_date":1706655600,"visitors":[],"content":"<div data-forbo-trackid=\"54405\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-47054891\"><a data-no-instant href=\"https:\/\/www.faulhaber.com\/en\/markets\/industry-automation\/electrical-grippers\/#q=grippers?utm_campaign=t21_gripper&#038;utm_source=Forbot.pl&#038;utm_medium=Website&#038;=utm_content=banner-v&#038;utm_term=\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2023\/01\/FAULHABER_BOX_B_2324.png\" alt=\"Nap\u0119dy do chwytak\u00f3w\"  width=\"336\" height=\"80\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"none","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}}},"group_info":{"id":1579,"name":"BOX-B","weights":{"50776":10,"42795":10,"36314":10,"36313":10,"36309":10,"54405":10},"type":"default","ordered_ad_ids":[36313,36309,36314,54405],"ad_count":1}}};
+window.advads_passive_placements = {"box-c_5":{"type":"group","id":1580,"elementid":["forbo-a57c0d4590c492566ac400e5f0834e9a"],"ads":{"36293":{"id":36293,"title":"PCBWay - BOX-C - 2019 - v2","expiry_date":0,"visitors":[],"content":"<div data-forbo-trackid=\"36293\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-610994945\"><a data-no-instant href=\"https:\/\/www.pcbway.com\/?from=forbot.pl205\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/PCBWay_2019_BOXC_v2.png\" alt=\"Precyzyjne laserowe szablony SMD\"  width=\"336\" height=\"258\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"day_indexes":[2,5],"privacy":{"ignore":false,"needs_consent":false}},"36283":{"id":36283,"title":"PCBWay - BOX-C - 2019","expiry_date":0,"visitors":[],"content":"<div data-forbo-trackid=\"36283\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-1155078125\"><a data-no-instant href=\"https:\/\/4bot.pl\/0akQx\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/PCBWay_2019_BOXC_v1.png\" alt=\"Monta\u017c PCB na zlecenie (darmowe szablony i dostawa)\"  width=\"336\" height=\"258\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"day_indexes":[3,0],"privacy":{"ignore":false,"needs_consent":false}},"54238":{"id":54238,"title":"TME - BOX-C - TME","expiry_date":0,"visitors":[],"content":"<div data-forbo-trackid=\"54238\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-1338443832\"><a data-no-instant href=\"https:\/\/techmasterevent.com\/contests\/open?utm_source=forbot.pl&#038;utm_medium=banner&#038;utm_campaign=2023-01-02_TechMasterEvent_-_kampania_informacyjna_336x280_(og)_PL\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2023\/01\/TechMasterEvent.jpg\" alt=\"TechMasterEvent\"  width=\"336\" height=\"280\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"none","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}},"54364":{"id":54364,"title":"SunFounder","expiry_date":1681595940,"visitors":[],"content":"<div data-forbo-trackid=\"54364\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-2053024371\"><a data-no-instant href=\"https:\/\/www.sunfounder.com\/?ref=Dk9q8cYC\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2023\/01\/SunFounder_BOX_C.png\" alt=\"SunFounder\"  width=\"336\" height=\"258\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"none","tracking_enabled":true,"privacy":{"ignore":false,"needs_consent":false}},"36539":{"id":36539,"title":"PCBWay - BOX-C - 2019 - v3","expiry_date":0,"visitors":[],"content":"<div data-forbo-trackid=\"36539\" data-forbo-trackbid=\"1\" class=\"forbo-target\" id=\"forbo-1298562487\"><a data-no-instant href=\"https:\/\/4bot.pl\/3I8ZJ\" rel=\"noopener nofollow\" class=\"adv-link\" target=\"_blank\" rel=\"noopener\"><img src=\"https:\/\/cdn.forbot.pl\/blog\/wp-content\/uploads\/2019\/05\/PCBWay_2019_BOXC_v3.png\" alt=\"Tylko 5$ za 10 sztuk prototyp\u00f3w PCB\"  width=\"336\" height=\"258\"   \/><\/a><\/div>","once_per_page":0,"debugmode":false,"blog_id":1,"type":"image","position":"","tracking_enabled":true,"day_indexes":[1,4,6],"privacy":{"ignore":false,"needs_consent":false}}},"group_info":{"id":1580,"name":"BOX-C","weights":{"36293":10,"36283":10,"36539":10,"27707":10,"54364":10,"54238":10},"type":"default","ordered_ad_ids":[36293,36283,54238,54364,36539],"ad_count":1},"placement_info":{"type":"default","name":"BOX-C","item":"group_1580","options":{"lazy_load":"enabled","placement_position":""},"id":"box-c"},"test_id":null,"group_wrap":[{"before":"<div class=\"forbo-box-c\" id=\"forbo-1440700095\">","after":"<\/div>"}],"inject_before":[""]}};
+( window.advanced_ads_ready || jQuery( document ).ready ).call( null, function() {if ( !window.advanced_ads_pro ) {console.log("Advanced Ads Pro: cache-busting can not be initialized");} });</script><!--/noptimize--><!--noptimize--><script>!function(){window.advanced_ads_ready_queue=window.advanced_ads_ready_queue||[],advanced_ads_ready_queue.push=window.advanced_ads_ready;for(var d=0,a=advanced_ads_ready_queue.length;d<a;d++)advanced_ads_ready(advanced_ads_ready_queue[d])}();</script><!--/noptimize--><script id="forbo-tracking">var advads_tracking_ads = {};var advads_tracking_urls = {"1":"https:\/\/forbot.pl\/blog\/wp-content\/ajax-handler.php"};var advads_tracking_methods = {"1":"frontend"};var advads_tracking_parallel = {"1":false};var advads_tracking_linkbases = {"1":"https:\/\/forbot.pl\/blog\/linkr\/"};</script><script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://forbot.pl/blog/wp-content/plugins/wp-rocket/assets/js/lazyload/17.5/lazyload.min.js"></script>        <script type="rocketlazyloadscript" data-minify="1" data-rocket-src="https://forbot.pl/blog/wp-content/cache/min/1/blog/wp-content/themes/frwd/js/instantpage.js?ver=1675415015" data-rocket-type="module" defer></script>
+
+        <script>
+            window.addEventListener('load', function() {
+              window._oneSignalInitOptions.promptOptions = {
+                slidedown: {
+                    enabled: true,
+                    autoPrompt: true,
+                    timeDelay: 10,
+                    pageViews: 2,
+                    actionMessage: "Czy chcesz otrzymywać powiadomienia o wpisach na temat elektroniki i majsterkowania?",   
+                    acceptButtonText: "Tak, chcę!",
+                    cancelButtonText: "Nie",
+                }};
+
+                window.OneSignal = window.OneSignal || [];
+                window.OneSignal.push(function() {
+                window.OneSignal.init(window._oneSignalInitOptions);
+                });
+            })
+        </script>
+
+        <iframe src="#" id="csfor" style="width: 1px; height: 1px; display: none; border: 0;" data-no-lazy="1"></iframe>
+        <script>document.getElementById('csfor').src = "/csfor.php?r=" + (new Date()).getTime() + Math.floor(Math.random() * 1000000);</script>
+    </body>
+</html><!--
+Performance optimized by Redis Object Cache. Learn more: https://wprediscache.com
+
+Retrieved 7840 objects (1 MB) from Redis using PhpRedis (v5.3.7).
+-->
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1676933350 -->
