@@ -48,7 +48,7 @@ def TODO2():
     url = 'http://www.mobilo24.eu/spis/'
     dir = r'C:\Users\Andrzej\Desktop\kurs Python'
     tmpfile = 'download.tmp'
-    file = 'spis.html'
+    file = 'pliki txt/spis.html'
 
     tmpfile_path = os.path.join(dir, tmpfile)
     file_path = os.path.join(dir, file)
